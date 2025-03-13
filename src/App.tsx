@@ -1,44 +1,44 @@
-import { useEffect, useState } from 'react'
-import List from './components/List'
+import { useEffect, useState } from "react";
+import List from "./components/List";
+import Form from "./components/Form";
+import { Sub } from "./types.d.tsx";
 
-import './App.css'
-
-interface Subs {
-  nick: string,
-  avatar: string,
-  subMonths: number,
-  description?: string
-}
+import "./App.css";
 
 const INITIAL_STATE = [
   {
-    nick: 'dapelu',
+    nick: "dapelu",
     subMonths: 3,
-    avatar: 'https://i.pravatar.cc/150?u=dapelu',
-    description: 'Dapelu is sometimes a mod',
+    avatar: "https://i.pravatar.cc/150?u=dapelu",
+    description: "Dapelu is sometimes a mod",
   },
   {
-    nick: 'ramulo',
+    nick: "ramulo",
     subMonths: 3,
-    avatar: 'https://i.pravatar.cc/150?u=ramulo',
-    description: 'Dapelu is a sub',
-  }
-]
+    avatar: "https://i.pravatar.cc/150?u=ramulo",
+    description: "Dapelu is a sub",
+  },
+];
 
 function App() {
-  const [subs, setsubs] = useState<Subs[]>([])
+  const [subs, setsubs] = useState<Sub[]>([]);
 
-  useEffect(()=> {
+  const onNewSub = (newSub: Sub) => {
+    setsubs([...subs, newSub]);
+  };
+
+  useEffect(() => {
     setsubs(INITIAL_STATE);
-  }, [])
+  }, []);
   return (
     <>
-      <div className='App'>
+      <div className="App">
         <h1>Channel's Subs</h1>
         <List subs={subs}></List>
+        <Form onNewSub={onNewSub} />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

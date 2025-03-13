@@ -1,4 +1,5 @@
 :root {
+  box-sizing: border-box;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -52,6 +53,18 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+ul li {
+  padding: 20px;
+  border: 1px solid #333;
+  margin-bottom: 30px;
 }
 
 @media (prefers-color-scheme: light) {
