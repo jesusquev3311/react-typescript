@@ -30,6 +30,7 @@ function App() {
   useEffect(() => {
     setsubs(INITIAL_STATE);
   }, []);
+
   return (
     <>
       <div className="App">

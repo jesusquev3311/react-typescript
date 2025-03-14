@@ -1,5 +1,11 @@
 # react-with-typescript
 
+## 0.1.2
+
+### Patch Changes
+
+- 200d66f: added formReducer hook
+
 ## 0.1.1
 
 ### Patch Changes
