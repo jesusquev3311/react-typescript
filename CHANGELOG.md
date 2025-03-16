@@ -1,5 +1,17 @@
 # react-with-typescript
 
+## 0.2.0
+
+### Minor Changes
+
+- 3b1a216: chakra components added and unit test config
+
+## 0.1.2
+
+### Patch Changes
+
+- 200d66f: added formReducer hook
+
 ## 0.1.1
 
 ### Patch Changes

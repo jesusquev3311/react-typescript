@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import List from "./components/List";
 import Form from "./components/Form";
 import { Sub } from "./types.d.tsx";
+import { Flex } from "@chakra-ui/react";
 
 import "./App.css";
 
@@ -30,13 +31,17 @@ function App() {
   useEffect(() => {
     setsubs(INITIAL_STATE);
   }, []);
+
   return (
     <>
-      <div className="App">
-        <h1>Channel's Subs</h1>
-        <List subs={subs}></List>
-        <Form onNewSub={onNewSub} />
-      </div>
+      <Flex>
+        <div className="App">
+          <h1>Channel's Subs</h1>
+          <br />
+          <List subs={subs}></List>
+          <Form onNewSub={onNewSub} />
+        </div>
+      </Flex>
     </>
   );
 }

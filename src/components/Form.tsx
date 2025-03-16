@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-import { Sub } from "../types.d.tsx";
+import { Sub } from "../types.d";
 
-interface FormState {
-  inputValues: Sub;
-}
+import useFormReducer from "../hooks/formReducerHook";
 
 interface FormProps {
   onNewSub: (newSub: Sub) => void;
 }
 
 const Form = ({ onNewSub }: FormProps) => {
-  const [inputValues, setInputValues] = useState<FormState["inputValues"]>({
-    nick: "",
-    avatar: "",
-    subMonths: 0,
-    description: "",
-  });
+  const [inputValues, dispatch] = useFormReducer();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onNewSub(inputValues);
+    handleClear();
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setInputValues({
-      ...inputValues,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+
+    dispatch({
+      type: "change_value",
+      payload: { inputName: name, inputValue: value },
     });
+  };
+
+  const handleClear = () => {
+    dispatch({ type: "clear" });
   };
 
   return (
@@ -60,6 +59,9 @@ const Form = ({ onNewSub }: FormProps) => {
         name="description"
         placeholder="description"
       />
+      <button type="button" onClick={handleClear}>
+        clear
+      </button>
       <button type="submit">save new sub</button>
     </form>
   );
