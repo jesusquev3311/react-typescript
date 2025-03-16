@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { Sub } from "../types.d.tsx";
+import { Sub } from "../types.d";
 
 const INITIAL_STATE = {
   nick: "",
