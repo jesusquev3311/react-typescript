@@ -1,4 +1,4 @@
-import { Sub } from "../types.d.tsx";
+import { Sub } from "../types.d";
 
 import useFormReducer from "../hooks/formReducerHook";
 

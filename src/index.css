@@ -61,12 +61,6 @@ ul {
   list-style: none;
 }
 
-ul li {
-  padding: 20px;
-  border: 1px solid #333;
-  margin-bottom: 30px;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
