@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import List from "./components/List";
-import Form from "./components/Form";
+import SubsTable from "./components/SubsTable/SubsTable.tsx";
+import Form from "./components/AddSubsForm/Form";
 import { Sub } from "./types.d.tsx";
 import { Flex } from "@chakra-ui/react";
 
@@ -9,14 +9,23 @@ import "./App.css";
 const INITIAL_STATE = [
   {
     nick: "dapelu",
-    subMonths: 3,
+    role: "vip",
+    subMonths: 10,
     avatar: "https://i.pravatar.cc/150?u=dapelu",
     description: "Dapelu is sometimes a mod",
   },
   {
     nick: "ramulo",
+    role: "sub",
     subMonths: 3,
     avatar: "https://i.pravatar.cc/150?u=ramulo",
+    description: "Dapelu is a sub",
+  },
+  {
+    nick: "axel",
+    role: "mod",
+    subMonths: 23,
+    avatar: "https://i.pravatar.cc/175?u=axel",
     description: "Dapelu is a sub",
   },
 ];
@@ -29,7 +38,7 @@ function App() {
   };
 
   useEffect(() => {
-    setsubs(INITIAL_STATE);
+    setsubs(INITIAL_STATE as Sub[]);
   }, []);
 
   return (
@@ -38,7 +47,7 @@ function App() {
         <div className="App">
           <h1>Channel's Subs</h1>
           <br />
-          <List subs={subs}></List>
+          <SubsTable subs={subs}></SubsTable>
           <Form onNewSub={onNewSub} />
         </div>
       </Flex>
