@@ -1,5 +1,11 @@
 # react-with-typescript
 
+## 0.3.0
+
+### Minor Changes
+
+- 4771097: subs list refactored to table and styles updated
+
 ## 0.2.0
 
 ### Minor Changes

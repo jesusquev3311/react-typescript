@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import List from "./List";
+import { Sub } from "../../types.d";
+
+import List from "./SubsTable";
 
 describe("List", () => {
   test("renders List", () => {
@@ -9,10 +11,11 @@ describe("List", () => {
         avatar: "avatar",
         subMonths: 1,
         description: "description",
+        role: "vip",
       },
     ];
 
-    render(<List subs={SUBS} />);
+    render(<List subs={SUBS as Sub[]} />);
     const listElement = screen.getAllByTestId("subs-list");
 
     expect(listElement).not.toBeNull();
