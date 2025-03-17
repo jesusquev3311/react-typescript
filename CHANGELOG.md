@@ -1,5 +1,11 @@
 # react-with-typescript
 
+## 0.4.0
+
+### Minor Changes
+
+- a8c0f28: added react-router-dom, sub detail, modal, navigation
+
 ## 0.3.0
 
 ### Minor Changes
