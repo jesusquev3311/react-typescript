@@ -1,0 +1,17 @@
+.subs-table,
+.subs-table .subs-table-header tr,
+.subs-table .subs-table-body tr {
+  background-color: var(--bg-secondary-dark);
+}
+
+.subs-table {
+  padding: 20px;
+  display: block;
+  border-radius: 5px;
+  flex-direction: column;
+}
+
+.subs-table .subs-table-header tr th,
+.subs-table .subs-table-body tr td {
+  border-color: var(--border-dark);
+}
