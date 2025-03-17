@@ -1,8 +1,12 @@
+import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SubsTable from "./components/SubsTable/SubsTable.tsx";
-import Form from "./components/AddSubsForm/Form";
+
+import Subscribers from "./pages/Subscribers";
+import SubscriberDetail from "./pages/SubscriberDetail";
+import NotFound from "./pages/404";
+import Layout from "./components/Layout/Layout";
+
 import { Sub } from "./types.d.tsx";
-import { Flex } from "@chakra-ui/react";
 
 import "./App.css";
 
@@ -43,14 +47,13 @@ function App() {
 
   return (
     <>
-      <Flex>
-        <div className="App">
-          <h1>Channel's Subs</h1>
-          <br />
-          <SubsTable subs={subs}></SubsTable>
-          <Form onNewSub={onNewSub} />
-        </div>
-      </Flex>
+      <Routes>
+        <Route path="/" element={<Layout onNewSub={onNewSub} />}>
+          <Route index element={<Subscribers subs={subs} />} />
+          <Route path="/subscribers/:id" element={<SubscriberDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </>
   );
 }

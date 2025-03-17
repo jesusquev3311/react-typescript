@@ -25,6 +25,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
 a {
   font-weight: 500;
   color: var(--text-accent-dark);
@@ -34,19 +41,26 @@ a:hover {
   color: var(--text-link-hover);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: left;
+  margin: 0.5em 0;
 }
 
+h2 {
+  font-size: 2.8em;
+  line-height: 1.1;
+  text-align: left;
+  margin: 0.5em 0;
+}
+
+p {
+  font-size: 1.6em;
+  line-height: 1.5;
+  margin: 0.5em 0;
+  text-align: left;
+}
 ul {
   display: flex;
   flex-direction: column;
