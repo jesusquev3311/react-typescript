@@ -1,7 +1,7 @@
 import { Sub } from "../../types.d";
 
 import useFormReducer from "../../hooks/formReducerHook";
-import useEventBus from "../../hooks/useEventBusHook";
+import { useEventBus } from "../../hooks/useEventBusHook";
 
 import {
   Button,

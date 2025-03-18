@@ -10,29 +10,12 @@ import { Sub } from "./types.d.tsx";
 
 import "./App.css";
 
-const INITIAL_STATE = [
-  {
-    nick: "dapelu",
-    role: "vip",
-    subMonths: 10,
-    avatar: "https://i.pravatar.cc/150?u=dapelu",
-    description: "Dapelu is sometimes a mod",
-  },
-  {
-    nick: "ramulo",
-    role: "sub",
-    subMonths: 3,
-    avatar: "https://i.pravatar.cc/150?u=ramulo",
-    description: "Dapelu is a sub",
-  },
-  {
-    nick: "axel",
-    role: "mod",
-    subMonths: 23,
-    avatar: "https://i.pravatar.cc/175?u=axel",
-    description: "Dapelu is a sub",
-  },
-];
+//TODO: create a provider for the data on separate file
+const data = async (): Promise<Sub[]> => {
+  const response = await fetch("http://localhost:5000/subs");
+  const data = await response.json();
+  return data;
+};
 
 function App() {
   const [subs, setsubs] = useState<Sub[]>([]);
@@ -42,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    setsubs(INITIAL_STATE as Sub[]);
+    data().then((subs) => setsubs(subs));
   }, []);
 
   return (

@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useEventBus } from "../../hooks/useEventBusHook";
 
 interface ModalProps {
   title: string;
@@ -10,6 +11,7 @@ interface ModalProps {
   actionBtnText: string;
   children: React.ReactNode;
   hasFooter?: boolean;
+  isOpen?: boolean;
 }
 
 const Modal = ({
@@ -19,8 +21,15 @@ const Modal = ({
   cancelBtnText,
   actionBtnText,
   hasFooter,
+  isOpen,
 }: ModalProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(isOpen);
+  const { subscribe, unSubscribe } = useEventBus();
+
+  useEffect(() => {
+    subscribe("closeModal", () => setOpen(false));
+    return () => unSubscribe("closeModal", () => setOpen(false));
+  }, [subscribe, unSubscribe]);
 
   const footer = (showFooter: ModalProps["hasFooter"]) => {
     return (

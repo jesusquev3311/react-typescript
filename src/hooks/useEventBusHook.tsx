@@ -1,52 +1,51 @@
-import { useState, createContext, useContext, ReactNode } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useRef, ReactNode } from "react";
 
 // Define event handlers storage
-type EventHandler<T = unknown> = (data?: T) => void;
+type EventHandler = (data?: unknown) => void;
 type EventMap = Record<string, EventHandler[]>;
 
 const EventBusContext = createContext<{
   emit: (event: string, data?: unknown) => void;
-  on: (event: string, handler: EventHandler) => void;
-  off: (event: string, handler: EventHandler) => void;
-}>({
-  emit: () => {},
-  on: () => {},
-  off: () => {},
-});
+  subscribe: (event: string, handler: EventHandler) => void;
+  unSubscribe: (event: string, handler: EventHandler) => void;
+} | null>(null);
 
 // Provider Component
-export const EventBusProvider = ({ children }: { children: ReactNode }) => {
-  const [events, setEvents] = useState<EventMap>({});
+export function EventBusProvider({ children }: { children: ReactNode }) {
+  const eventsRef = useRef<EventMap>({});
 
   const emit = (event: string, data?: unknown) => {
-    if (events[event]) {
-      events[event].forEach((handler) => handler(data));
+    eventsRef.current[event]?.forEach((handler) => handler(data));
+  };
+
+  const subscribe = (event: string, handler: EventHandler) => {
+    if (!eventsRef.current[event]) {
+      eventsRef.current[event] = [];
+    }
+    eventsRef.current[event].push(handler);
+  };
+
+  const unSubscribe = (event: string, handler: EventHandler) => {
+    if (eventsRef.current[event]) {
+      eventsRef.current[event] = eventsRef.current[event].filter(
+        (h) => h !== handler
+      );
     }
   };
 
-  const on = (event: string, handler: EventHandler) => {
-    setEvents((prev) => ({
-      ...prev,
-      [event]: [...(prev[event] || []), handler],
-    }));
-  };
-
-  const off = (event: string, handler: EventHandler) => {
-    setEvents((prev) => ({
-      ...prev,
-      [event]: prev[event]?.filter((h) => h !== handler) || [],
-    }));
-  };
-
   return (
-    <EventBusContext.Provider value={{ emit, on, off }}>
+    <EventBusContext.Provider value={{ emit, subscribe, unSubscribe }}>
       {children}
     </EventBusContext.Provider>
   );
-};
+}
 
 // Custom Hook to use Event Bus
-const useEventBus = () => useContext(EventBusContext);
-
-// eslint-disable-next-line react-refresh/only-export-components
-export default useEventBus;
+export function useEventBus() {
+  const context = useContext(EventBusContext);
+  if (!context) {
+    throw new Error("useEventBus must be used within an EventBusProvider");
+  }
+  return context;
+}
