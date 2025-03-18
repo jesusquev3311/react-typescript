@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   avatar: "",
   subMonths: 0,
   description: "",
+  role: "sub",
 };
 
 interface FormState {
@@ -34,10 +35,10 @@ const formReducer = (
       };
     }
     case "clear":
-      return INITIAL_STATE;
+      return INITIAL_STATE as Sub;
   }
 };
 
-const useFormReducer = () => useReducer(formReducer, INITIAL_STATE);
+const useFormReducer = () => useReducer(formReducer, INITIAL_STATE as Sub);
 
 export default useFormReducer;

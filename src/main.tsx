@@ -1,14 +1,19 @@
 import { Provider } from "../src/components/ui/provider";
 
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router";
+
+import { EventBusProvider } from "./hooks/useEventBusHook.tsx";
+
 import "./index.css";
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Provider>
-      <App />
-    </Provider>
-  </StrictMode>
+  <BrowserRouter>
+    <EventBusProvider>
+      <Provider>
+        <App />
+      </Provider>
+    </EventBusProvider>
+  </BrowserRouter>
 );

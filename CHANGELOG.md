@@ -1,5 +1,23 @@
 # react-with-typescript
 
+## 0.4.2
+
+### Patch Changes
+
+- d15a598: added subscribersProvider
+
+## 0.4.1
+
+### Patch Changes
+
+- 6e3ae33: added json server to mock data, updated usEventBusHook to avoid infinite iterariton
+
+## 0.4.0
+
+### Minor Changes
+
+- a8c0f28: added react-router-dom, sub detail, modal, navigation
+
 ## 0.3.0
 
 ### Minor Changes

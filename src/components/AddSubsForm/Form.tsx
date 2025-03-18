@@ -1,6 +1,7 @@
 import { Sub } from "../../types.d";
 
 import useFormReducer from "../../hooks/formReducerHook";
+import { useEventBus } from "../../hooks/useEventBusHook";
 
 import {
   Button,
@@ -21,10 +22,13 @@ type FormEvent = React.ChangeEvent<
 const Form = ({ onNewSub }: FormProps) => {
   const [inputValues, dispatch] = useFormReducer();
 
+  const { emit } = useEventBus();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onNewSub(inputValues);
     handleClear();
+    emit("closeModal");
   };
 
   const handleChange = (e: FormEvent) => {

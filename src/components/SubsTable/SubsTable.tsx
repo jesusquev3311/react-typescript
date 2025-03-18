@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { Link } from "react-router-dom";
 import {
   Table,
   Avatar,
@@ -6,6 +7,7 @@ import {
   Badge,
   IconButton,
   ButtonGroup,
+  Box,
 } from "@chakra-ui/react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -45,13 +47,15 @@ const SubsTable = ({ subs }: Props) => {
       return (
         <Table.Row key={index}>
           <Table.Cell>
-            <Flex align={"center"}>
-              <Avatar.Root size="xs" shape="full" mr={3}>
-                <Avatar.Image src={sub.avatar} />
-                <Avatar.Fallback name={sub.nick} />
-              </Avatar.Root>
-              @{sub.nick}
-            </Flex>
+            <Link to={`/subscribers/${sub.nick}`}>
+              <Flex align={"center"}>
+                <Avatar.Root size="xs" shape="full" mr={3}>
+                  <Avatar.Image src={sub.avatar} />
+                  <Avatar.Fallback name={sub.nick} />
+                </Avatar.Root>
+                @{sub.nick}
+              </Flex>
+            </Link>
           </Table.Cell>
           <Table.Cell>
             <Badge
@@ -73,23 +77,25 @@ const SubsTable = ({ subs }: Props) => {
   };
 
   return (
-    <Table.Root
-      className="subs-table"
-      variant={"line"}
-      data-testid="subs-table"
-      interactive
-    >
-      <Table.Header className="subs-table-header">
-        <Table.Row className="subs-table-header-row">
-          <Table.ColumnHeader>Subscriber</Table.ColumnHeader>
-          <Table.ColumnHeader>Role</Table.ColumnHeader>
-          <Table.ColumnHeader>Description</Table.ColumnHeader>
-          <Table.ColumnHeader>Subscription Months</Table.ColumnHeader>
-          <Table.ColumnHeader textAlign="end">Actions</Table.ColumnHeader>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body className="subs-table-body">{renderList()}</Table.Body>
-    </Table.Root>
+    <Box className="subs-table-container">
+      <Table.Root
+        className="subs-table"
+        variant={"line"}
+        data-testid="subs-table"
+        interactive
+      >
+        <Table.Header className="subs-table-header">
+          <Table.Row className="subs-table-header-row">
+            <Table.ColumnHeader>Subscriber</Table.ColumnHeader>
+            <Table.ColumnHeader>Role</Table.ColumnHeader>
+            <Table.ColumnHeader>Description</Table.ColumnHeader>
+            <Table.ColumnHeader>Subscription Months</Table.ColumnHeader>
+            <Table.ColumnHeader textAlign="end">Actions</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body className="subs-table-body">{renderList()}</Table.Body>
+      </Table.Root>
+    </Box>
   );
 };
 
