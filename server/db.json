@@ -1,0 +1,28 @@
+{
+  "subs": [
+    {
+      "id": 1,
+      "nick": "dapelu",
+      "role": "vip",
+      "subMonths": 10,
+      "avatar": "https://i.pravatar.cc/150?u=dapelu",
+      "description": "Dapelu is sometimes a mod"
+    },
+    {
+      "id": 2,
+      "nick": "ramulo",
+      "role": "sub",
+      "subMonths": 3,
+      "avatar": "https://i.pravatar.cc/150?u=ramulo",
+      "description": "Dapelu is a sub"
+    },
+    {
+      "id": 3,
+      "nick": "axel",
+      "role": "mod",
+      "subMonths": 23,
+      "avatar": "https://i.pravatar.cc/175?u=axel",
+      "description": "Dapelu is a sub"
+    }
+  ]
+}

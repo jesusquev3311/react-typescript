@@ -1,7 +1,7 @@
 {
   "name": "react-with-typescript",
   "private": true,
-  "version": "0.4.0",
+  "version": "0.4.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +14,8 @@
     "changeset:version": "changeset version",
     "changeset:commit": "git add . && git commit -m \"chore: update release($npm_package_version) \"",
     "changeset:release": "npm run changeset:version && npm run changeset:commit && changeset publish",
-    "prepare": "husky"
+    "prepare": "husky",
+    "server": "json-server --watch ./server/db.json --port 5000"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.13.0",

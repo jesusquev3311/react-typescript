@@ -1,5 +1,11 @@
 # react-with-typescript
 
+## 0.4.1
+
+### Patch Changes
+
+- 6e3ae33: added json server to mock data, updated usEventBusHook to avoid infinite iterariton
+
 ## 0.4.0
 
 ### Minor Changes
