@@ -1,5 +1,11 @@
 # react-with-typescript
 
+## 0.4.2
+
+### Patch Changes
+
+- d15a598: added subscribersProvider
+
 ## 0.4.1
 
 ### Patch Changes
